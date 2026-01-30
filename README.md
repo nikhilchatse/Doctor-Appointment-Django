@@ -37,14 +37,14 @@ Day 3 Checklist
 - [x] Connected signals in apps.py.
 
 Day 4 Checklist
-[x] Created templates folder & updated settings.py.
+- [x] Created templates folder & updated settings.py.
 
-[x] Created base.html with Bootstrap.
+- [x] Created base.html with Bootstrap.
 
-[x] Created PatientSignupForm in forms.py.
+- [x] Created PatientSignupForm in forms.py.
 
-[x] Created signup and login views.
+- [x] Created signup and login views.
 
-[x] Created HTML files for Signup and Login.
+- [x] Created HTML files for Signup and Login.
 
-[x] Updated URLs.
+- [x] Updated URLs.
