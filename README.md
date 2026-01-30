@@ -35,3 +35,16 @@ Day 3 Checklist
 - [x] Created signals.py for automation.
 
 - [x] Connected signals in apps.py.
+
+Day 4 Checklist
+[x] Created templates folder & updated settings.py.
+
+[x] Created base.html with Bootstrap.
+
+[x] Created PatientSignupForm in forms.py.
+
+[x] Created signup and login views.
+
+[x] Created HTML files for Signup and Login.
+
+[x] Updated URLs.
