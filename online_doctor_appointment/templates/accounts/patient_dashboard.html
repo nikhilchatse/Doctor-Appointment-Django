@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                My Profile
+            </div>
+            <div class="card-body">
+                <h4>{{ user.username }}</h4>
+                <p><strong>Age:</strong> {{ patient.age }}</p>
+                <p><strong>Blood Group:</strong> {{ patient.blood_group }}</p>
+                <p><strong>Address:</strong> {{ user.address }}</p>
+                <hr>
+                <a href="#" class="btn btn-warning w-100 mb-2">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h3>Welcome Back!</h3>
+                <p>What would you like to do today?</p>
+                <a href="#" class="btn btn-primary btn-lg">📅 Book New Appointment</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                My Recent Appointments
+            </div>
+            <div class="card-body">
+                <p class="text-muted">No appointments found.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

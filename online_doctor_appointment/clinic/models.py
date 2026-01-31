@@ -26,7 +26,7 @@ class PatientProfile(models.Model):
         ('F', 'Female'),
         ('O', 'Other'),
     ]
-    user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='patient_profile')
+    user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name='patient_profile')
     gender=models.CharField(max_length=50,choices=GENDER_CHOICES)
     age=models.CharField(max_length=50)
     blood_group=models.CharField(max_length=10,blank=True)

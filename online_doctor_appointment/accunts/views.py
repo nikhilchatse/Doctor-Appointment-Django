@@ -3,7 +3,7 @@ from django.contrib.auth import login,logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import PatientSignupForm
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def patient_signup(request):
@@ -35,3 +35,17 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+@login_required
+def dashboard(request):
+    user=request.user
+
+    if user.role == 'ADMIN':
+        return redirect('/admin/')
+    elif user.role == 'DOCTOR':
+        return render(request,"accounts/doctor_dashboard.html",{'doctor':user.doctor_profile})
+    elif user.role == 'PATIENT':
+        return render(request,"accounts/patient_dashboard.html",{'patient':user.patient_profile})
+    
+    return render(request, 'base.html', {'message': 'Role not assigned'})
+    

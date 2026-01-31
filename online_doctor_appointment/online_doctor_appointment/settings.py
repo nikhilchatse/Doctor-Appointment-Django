@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'accunts',
+    'accunts.apps.AccountsConfig',
     'clinic',
     'billing',
 ]
@@ -54,6 +54,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'online_doctor_appointment.urls'
+
+
+
+
+
+LOGIN_REDIRECT_URL = 'dashboard'
+
+LOGIN_URL = 'login'
+
 
 TEMPLATES = [
     {

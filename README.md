@@ -48,3 +48,14 @@ Day 4 Checklist
 - [x] Created HTML files for Signup and Login.
 
 - [x] Updated URLs.
+
+Day 5 Checklist
+- [x] Updated dashboard view in accounts/views.py with logic for Patient vs Doctor.
+
+- [x] Created patient_dashboard.html (displaying dynamic profile data like Age/Blood Group).
+
+- [x] Created doctor_dashboard.html (displaying Department).
+
+- [x] Added LOGIN_REDIRECT_URL in settings.
+
+- [x] Test 1 (Patient): Log in with the patient account

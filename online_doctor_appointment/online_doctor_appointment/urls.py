@@ -16,12 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from django.shortcuts import render
-def dashboard(request):
-    return render(request, 'base.html', {'user': request.user})
-
+from accunts.views import login_user
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/',include('accunts.urls')),
-    path('', dashboard, name='dashboard'),
+    path('',login_user,name='home')
 ]
