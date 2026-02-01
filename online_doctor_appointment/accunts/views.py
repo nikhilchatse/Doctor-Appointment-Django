@@ -16,7 +16,7 @@ def patient_signup(request):
 
             login(request, user)
             messages.success(request, f"Signup successful! Welcome. ")
-            return redirect('dashboard') # We will create this later
+            return redirect('dashboard') 
     else:
         form = PatientSignupForm()
     return render(request, 'accounts/signup.html', {'form': form})

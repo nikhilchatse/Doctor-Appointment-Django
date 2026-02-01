@@ -59,3 +59,13 @@ Day 5 Checklist
 - [x] Added LOGIN_REDIRECT_URL in settings.
 
 - [x] Test 1 (Patient): Log in with the patient account
+
+
+Day 6 Checklist
+- [x] Included clinic.urls in the main project urls.py.
+
+- [x] Created AppointmentForm in clinic/forms.py.
+
+- [x] Created doctor_list and book_appointment views.
+
+- [x] Created the HTML templates for listing and booking.

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Book with Dr. {{ doctor.user.last_name }}
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label>Select Date</label>
+                        {{ form.appointment_date }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label>Select Time</label>
+                        {{ form.appointment_time }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label>Describe Symptoms</label>
+                        {{ form.symptoms }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Confirm Booking</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
