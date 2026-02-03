@@ -9,40 +9,53 @@
         </div>
     </div>
 </div>
-
-<div class="row mt-4">
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header bg-primary text-white">
-                Upcoming Appointments (Today)
-            </div>
-            <div class="card-body">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Patient Name</th>
-                            <th>Symptoms</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="4" class="text-center">No appointments for today.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="card mt-4">
+    <div class="card-header bg-primary text-white">
+        Manage Appointments
     </div>
-
-    <div class="col-md-4">
-        <div class="card bg-light">
-            <div class="card-body text-center">
-                <h3>0</h3>
-                <p>Total Patients</p>
-            </div>
-        </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Date & Time</th>
+                    <th>Patient Name</th>
+                    <th>Symptoms</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appt in appointments %}
+                <tr>
+                    <td>{{ appt.appointment_date }} at {{ appt.appointment_time }}</td>
+                    <td>{{ appt.patient.first_name }} {{ appt.patient.last_name }}</td>
+                    <td>{{ appt.symptoms }}</td>
+                    <td>
+                        {% if appt.status == 'pending' %}
+                            <span class="badge bg-warning">Pending</span>
+                        {% elif appt.status == 'confirmed' %}
+                            <span class="badge bg-success">Confirmed</span>
+                        {% elif appt.status == 'cancelled' %}
+                            <span class="badge bg-danger">Cancelled</span>
+                        {% else %}
+                            <span class="badge bg-info">Completed</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if appt.status == 'pending' %}
+                            <a href="{% url 'update_appt' appt.id 'confirmed' %}" class="btn btn-sm btn-success">✅ Accept</a>
+                            <a href="{% url 'update_appt' appt.id 'cancelled' %}" class="btn btn-sm btn-danger">❌ Reject</a>
+                        {% elif appt.status == 'confirmed' %}
+                            <a href="{% url 'update_appt' appt.id 'completed' %}" class="btn btn-sm btn-info">🏁 Mark Done</a>
+                            <a href="{% url 'create_report' appt.id %}" class="btn btn-sm btn-dark">📝 Write Rx</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="5">No appointments found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 {% endblock %}

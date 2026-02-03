@@ -28,14 +28,37 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                My Recent Appointments
-            </div>
-            <div class="card-body">
-                <p class="text-muted">No appointments found.</p>
-            </div>
-        </div>
+       <table class="table">
+    <thead>
+        <tr>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for appt in appointments %}
+        <tr>
+            <td>Dr. {{ appt.doctor.user.last_name }}</td>
+            <td>{{ appt.appointment_date }}</td>
+            <td>
+                 {% if appt.status == 'confirmed' %}
+                    <span class="text-success fw-bold">Confirmed</span>
+                 {% elif appt.status == 'cancelled' %}
+                    <span class="text-danger">Cancelled</span>
+                 {% elif appt.status == 'completed' %}
+                    <span class="text-primary">completed</span>
+                    <a href="{% url 'view_report' appt.id %}" class="btn btn-sm btn-outline-primary">📄 View Report</a>
+                 {% else %}
+                    <span class="text-warning">Pending</span>
+                 {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">No history yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
     </div>
 </div>
 {% endblock %}

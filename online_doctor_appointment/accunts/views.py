@@ -4,6 +4,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import PatientSignupForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+
+from clinic.models import Appointment
 # Create your views here.
 
 def patient_signup(request):
@@ -43,9 +45,13 @@ def dashboard(request):
     if user.role == 'ADMIN':
         return redirect('/admin/')
     elif user.role == 'DOCTOR':
-        return render(request,"accounts/doctor_dashboard.html",{'doctor':user.doctor_profile})
+        appointment = Appointment.objects.filter(doctor=user.doctor_profile).order_by('-appointment_date')
+        return render(request,"accounts/doctor_dashboard.html",{'doctor':user.doctor_profile,'appointments':appointment})
+    
     elif user.role == 'PATIENT':
-        return render(request,"accounts/patient_dashboard.html",{'patient':user.patient_profile})
+        appointments = Appointment.objects.filter(patient=user).order_by('-appointment_date')
+       
+        return render(request,"accounts/patient_dashboard.html",{'patient':user.patient_profile,'appointments':appointments})
     
     return render(request, 'base.html', {'message': 'Role not assigned'})
     
