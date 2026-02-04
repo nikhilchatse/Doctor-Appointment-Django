@@ -69,3 +69,23 @@ Day 6 Checklist
 - [x] Created doctor_list and book_appointment views.
 
 - [x] Created the HTML templates for listing and booking.
+
+Day 7 Checklist
+- [x] Updated dashboard view in accounts to fetch appointments.
+
+- [x] Updated Doctor Dashboard HTML to show the "Accept/Reject" buttons.
+
+- [x] Updated Patient Dashboard HTML to show the status table.
+
+- [x] Created update_appointment view in clinic.
+
+- [x] Added URL pattern for updating status.
+
+Day 8 Checklist
+- [x] Configured MEDIA_ROOT in settings for file uploads.
+
+- [x] Created MedicalReport model and migrated.
+
+- [x] Created views for creating and viewing reports.
+
+- [x] Updated both Dashboards with new buttons.
