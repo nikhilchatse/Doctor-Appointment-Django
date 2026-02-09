@@ -89,3 +89,20 @@ Day 8 Checklist
 - [x] Created views for creating and viewing reports.
 
 - [x] Updated both Dashboards with new buttons.
+
+Day 9 Checklist
+
+- [x] Implementet payment system using mock payment
+- [x] testing Payment system
+
+Day 10 Checklist
+
+ - [x] Added referred_by field to Appointment model & Migrated.
+
+ - [x] Created ReferralForm and refer_patient view.
+
+ - [x] Created refer_patient.html template.
+
+ - [x] Added "Refer" button to Doctor Dashboard.
+
+ - [x] Created a professional home.html Landing Page.
