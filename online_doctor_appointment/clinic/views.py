@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import DoctorProfile,PatientProfile,Appointment
-from .forms import AppointmentForm
+from .forms import AppointmentForm,ReferForm
 
 # Create your views here.
 
@@ -32,7 +32,7 @@ def book_appointment(request,doctor_id):
         form = AppointmentForm()
     return render(request,'clinic/book_appointment.html',{'form':form ,'doctor':doctor})
 
-login_required
+@login_required
 def update_appointment(request,appointment_id,new_status):
     appt = get_object_or_404(Appointment,id=appointment_id)
 
@@ -45,3 +45,29 @@ def update_appointment(request,appointment_id,new_status):
 
     messages.success(request, f"Appointment marked as {new_status}.")
     return redirect('dashboard')
+
+@login_required
+def refer_patient(request,appointment_id):
+    current_appt=get_object_or_404(Appointment,id=appointment_id)
+
+    if request.method == 'POST':
+        form = ReferForm(request.POST)
+        if form.is_valid():
+            target_doctor= form.cleaned_data['doctor']
+            reason=form.cleaned_data['reason']
+            Appointment.objects.create(
+                patient=current_appt.patient,
+                doctor=target_doctor,
+                appointment_date=current_appt.appointment_date,
+                appointment_time=current_appt.appointment_time,
+                symptoms=f"Refer by Dr.{request.user.last_name}:{reason}",
+                status='pending',
+                refer_by=current_appt.doctor
+            )
+
+            messages.success(request,"Refered Successfully")
+            return redirect('dashboard')
+    else:
+        form = ReferForm()
+
+    return render(request,'clinic/refer_form.html',{'form':form,'appt':current_appt})

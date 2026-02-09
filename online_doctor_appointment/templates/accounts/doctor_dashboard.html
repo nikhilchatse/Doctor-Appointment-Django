@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div class="row">
     <div class="col-md-12">
         <div class="alert alert-success">
-            <h2>👨‍⚕️ Welcome, Dr. {{ user.username }}</h2>
+            <h2> Welcome, Dr. {{ user.username }}</h2>
             <p><strong>Department:</strong> {{ doctor.department }} | <strong>Status:</strong> Active</p>
         </div>
     </div>
@@ -43,11 +44,12 @@
                     </td>
                     <td>
                         {% if appt.status == 'pending' %}
-                            <a href="{% url 'update_appt' appt.id 'confirmed' %}" class="btn btn-sm btn-success">✅ Accept</a>
-                            <a href="{% url 'update_appt' appt.id 'cancelled' %}" class="btn btn-sm btn-danger">❌ Reject</a>
+                            <a href="{% url 'update_appt' appt.id 'confirmed' %}" class="btn btn-sm btn-success"> Accept</a>
+                            <a href="{% url 'update_appt' appt.id 'cancelled' %}" class="btn btn-sm btn-danger"> Reject</a>
                         {% elif appt.status == 'confirmed' %}
-                            <a href="{% url 'update_appt' appt.id 'completed' %}" class="btn btn-sm btn-info">🏁 Mark Done</a>
-                            <a href="{% url 'create_report' appt.id %}" class="btn btn-sm btn-dark">📝 Write Rx</a>
+                            <a href="{% url 'update_appt' appt.id 'completed' %}" class="btn btn-sm btn-info"> Mark Done</a>
+                            <a href="{% url 'create_report' appt.id %}" class="btn btn-sm btn-dark"> Write Report</a>
+                            <a href="{% url 'refer_patient' appt.id %}" class="btn btn-sm btn-outline-dark">Refere</a>
                         {% endif %}
                     </td>
                 </tr>

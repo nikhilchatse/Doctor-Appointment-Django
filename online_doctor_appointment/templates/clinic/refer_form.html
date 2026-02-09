@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                 Refer Patient: {{ appt.patient.first_name }}
+            </div>
+            <div class="card-body">
+                <p>Current Doctor: <strong>Dr. {{ appt.doctor.user.last_name }}</strong></p>
+                <hr>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-info w-100">Send Referral</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

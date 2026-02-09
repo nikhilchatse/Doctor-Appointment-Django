@@ -52,5 +52,7 @@ class Appointment(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    refer_by=models.ForeignKey(DoctorProfile,on_delete=models.SET_NULL,null=True,blank=True,related_name='refer_made')
+
     def __str__(self):
         return f"Appt: {self.patient.username} with {self.doctor}"

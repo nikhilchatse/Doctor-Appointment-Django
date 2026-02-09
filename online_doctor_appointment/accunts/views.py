@@ -29,6 +29,7 @@ def login_user(request):
         if form.is_valid():
             user=form.get_user()
             login(request,user)
+            messages.success(request,"Login Successfull")
             return redirect('dashboard') 
     else:
         form = AuthenticationForm()
@@ -46,9 +47,11 @@ def dashboard(request):
         return redirect('/admin/')
     elif user.role == 'DOCTOR':
         appointment = Appointment.objects.filter(doctor=user.doctor_profile).order_by('-appointment_date')
+        messages.success(request, "Dashboard loaded")
         return render(request,"accounts/doctor_dashboard.html",{'doctor':user.doctor_profile,'appointments':appointment})
     
     elif user.role == 'PATIENT':
+        messages.success(request, "Dashboard loaded")
         appointments = Appointment.objects.filter(patient=user).order_by('-appointment_date')
        
         return render(request,"accounts/patient_dashboard.html",{'patient':user.patient_profile,'appointments':appointments})

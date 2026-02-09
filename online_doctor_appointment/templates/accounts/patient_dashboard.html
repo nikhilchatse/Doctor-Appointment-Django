@@ -24,7 +24,7 @@
             <div class="card-body">
                 <h3>Welcome Back!</h3>
                 <p>What would you like to do today?</p>
-                <a href="{% url 'doctors' %}" class="btn btn-primary btn-lg">📅 Book New Appointment</a>
+                <a href="{% url 'doctors' %}" class="btn btn-primary btn-lg"> Book New Appointment</a>
             </div>
         </div>
 
@@ -44,11 +44,16 @@
             <td>
                  {% if appt.status == 'confirmed' %}
                     <span class="text-success fw-bold">Confirmed</span>
+                            {% if appt.payment_details %}
+                                    <span class="badge bg-success">Paid </span>
+                            {% else %}
+                                    <a href="{% url 'checkout' appt.id %}" class="btn btn-sm btn-warning"> Pay Now</a>
+                            {% endif %}
                  {% elif appt.status == 'cancelled' %}
                     <span class="text-danger">Cancelled</span>
                  {% elif appt.status == 'completed' %}
                     <span class="text-primary">completed</span>
-                    <a href="{% url 'view_report' appt.id %}" class="btn btn-sm btn-outline-primary">📄 View Report</a>
+                    <a href="{% url 'view_report' appt.id %}" class="btn btn-sm btn-outline-primary"> View Report</a>
                  {% else %}
                     <span class="text-warning">Pending</span>
                  {% endif %}

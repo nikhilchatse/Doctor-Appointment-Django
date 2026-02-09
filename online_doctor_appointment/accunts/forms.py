@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import User
 
 class PatientSignupForm(UserCreationForm):
-    address =forms.CharField(widget=forms.Textarea(attrs={'rows':3}))
+    address = forms.CharField(widget=forms.Textarea(attrs={'rows':3}))
 
     class Meta:
         model=User
