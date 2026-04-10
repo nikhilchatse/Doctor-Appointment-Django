@@ -1,21 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card shadow">
-            <div class="card-header bg-info text-white">
-                 Refer Patient: {{ appt.patient.first_name }}
+
+<style type="text/tailwindcss">
+    .django-form input, .django-form select, .django-form text, .django-form textarea {
+        @apply w-full border border-gray-300 rounded-lg px-4 py-3 mt-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors bg-gray-50 focus:bg-white;
+    }
+    .django-form label {
+        @apply block text-sm font-semibold text-gray-700 mb-1 mt-4;
+    }
+</style>
+
+<div class="w-full max-w-lg mx-auto p-4 sm:p-6 lg:p-8 mt-4 md:mt-10">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+        <div class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white p-6 md:p-8 text-center">
+            <h2 class="text-2xl font-bold">Refer Patient</h2>
+            <p class="text-teal-50 mt-1.5 font-medium text-lg">{{ appt.patient.first_name }}</p>
+        </div>
+        
+        <div class="p-6 md:p-8">
+            <div class="bg-gray-50 rounded-xl p-5 mb-2 border border-gray-100 flex items-center justify-between">
+                <span class="text-gray-500 text-sm font-semibold uppercase tracking-wider">Current Doctor</span>
+                <span class="text-gray-800 font-bold text-lg">Dr. {{ appt.doctor.user.last_name }}</span>
             </div>
-            <div class="card-body">
-                <p>Current Doctor: <strong>Dr. {{ appt.doctor.user.last_name }}</strong></p>
-                <hr>
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-info w-100">Send Referral</button>
-                </form>
-            </div>
+            
+            <form method="post" class="django-form mt-2">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all transform hover:-translate-y-0.5 mt-8 text-lg tracking-wide">Send Referral</button>
+            </form>
         </div>
     </div>
 </div>

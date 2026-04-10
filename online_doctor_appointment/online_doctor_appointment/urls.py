@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/',include('accunts.urls')),
     path('clinic/',include('clinic.urls')),
-    # path('login',login_user,name='login'),
+    
     path('reports/',include('reports.urls')),
     path('billing/',include('billing.urls')),
     path('',home_view,name='home')

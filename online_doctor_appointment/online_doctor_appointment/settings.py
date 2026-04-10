@@ -143,3 +143,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 AUTH_USER_MODEL = 'accunts.User'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -1,6 +1,7 @@
 from django import forms
 from .models import Appointment
-from clinic.models import DoctorProfile
+from clinic.models import DoctorProfile,PatientProfile
+from accunts.models import User
 
 
 class AppointmentForm(forms.ModelForm):
@@ -24,3 +25,20 @@ class ReferForm(forms.Form):
         widget=forms.Textarea(attrs={'rows':3,'class':'form-control'}),
         label="Reason For Referal"
     )
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'profile_photo', 'address']
+
+# 2. Doctor Specific Form
+class DoctorProfileForm(forms.ModelForm):
+    class Meta:
+        model = DoctorProfile
+        fields = ['department', 'specialization', 'consultation_fees', 'availability','gender']
+
+# 3. Patient Specific Form
+class PatientProfileForm(forms.ModelForm):
+    class Meta:
+        model = PatientProfile
+        fields = ['age', 'blood_group', 'medical_history','gender']

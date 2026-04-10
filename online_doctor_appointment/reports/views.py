@@ -3,7 +3,7 @@ from .models import medicalreports
 from .forms import reportform
 from clinic.models import Appointment
 from django.contrib import messages
-
+from accunts.models import User
 # Create your views here.
 
 def create_report(request,appointment_id):
@@ -39,3 +39,24 @@ def view_report(request,appointment_id):
         return redirect('dashboard')
     
     return render(request, 'reports/view_report.html', {'report': report})
+
+
+
+def patient_history(request, patient_id):
+    # Security check: Ensure only doctors (or admin) can view this
+    if request.user.role not in ['DOCTOR', 'ADMIN']:
+        messages.error(request, "Access denied.")
+        return redirect('dashboard')
+        
+    patient = get_object_or_404(User, id=patient_id, role='PATIENT')
+    
+    # Fetch all completed appointments for this patient
+    past_appointments = Appointment.objects.filter(
+        patient=patient, 
+        status='completed'
+    ).order_by('-appointment_date')
+    
+    return render(request, 'reports/patient_history.html', {
+        'patient': patient,
+        'past_appointments': past_appointments
+    })
